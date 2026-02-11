@@ -1,5 +1,3 @@
-const fs = require("node:fs/promises");
-const path = require("node:path");
 const { Pool } = require("pg");
 
 let pool;
@@ -27,9 +25,7 @@ async function ensureDatabase() {
   if (initPromise) return initPromise;
 
   initPromise = (async () => {
-    const schemaPath = path.join(__dirname, "schema.sql");
-    const schemaSql = await fs.readFile(schemaPath, "utf8");
-    await getPool().query(schemaSql);
+    await getPool().query("SELECT 1");
   })();
 
   return initPromise;
@@ -61,4 +57,3 @@ module.exports = {
   query,
   withTransaction
 };
-

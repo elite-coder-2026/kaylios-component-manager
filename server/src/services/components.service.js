@@ -221,6 +221,60 @@ async function listComponents() {
   return out;
 }
 
+async function searchComponents({ q, framework, limit }) {
+  const params = [`%${q}%`];
+  const filters = [`c.component ILIKE $1`];
+
+  if (framework) {
+    params.push(framework);
+    filters.push(`c.framework = $2`);
+  }
+
+  params.push(limit);
+  const limitParamIndex = framework ? 3 : 2;
+
+  const result = await query(
+    `SELECT
+       c.framework,
+       c.component,
+       c.version,
+       c.author_name AS author,
+       c.component_number AS number,
+       COUNT(f.id)::INT AS file_count,
+       COALESCE(
+         SUM(
+           CASE
+             WHEN f.content IS NULL OR f.content = '' THEN 0
+             ELSE LENGTH(f.content) - LENGTH(REPLACE(f.content, E'\n', '')) + 1
+           END
+         ),
+         0
+       )::BIGINT AS total_lines
+     FROM components c
+     LEFT JOIN component_files f ON f.component_id = c.id
+     WHERE ${filters.join(' AND ')}
+     GROUP BY c.id
+     ORDER BY c.framework, c.component
+     LIMIT $${limitParamIndex}`,
+    params
+  );
+
+  return {
+    query: q,
+    framework: framework || null,
+    count: result.rows.length,
+    results: result.rows.map((row) => ({
+      framework: row.framework,
+      component: row.component,
+      version: row.version,
+      author: row.author,
+      number: row.number,
+      fileCount: Number(row.file_count || 0),
+      totalLines: Number(row.total_lines || 0)
+    }))
+  };
+}
+
 async function getComponentFiles(framework, component) {
   const result = await query(
     `SELECT f.filename
@@ -241,6 +295,131 @@ async function getComponentFiles(framework, component) {
     framework,
     component,
     files: result.rows.map((row) => row.filename)
+  };
+}
+
+async function getComponentContent(framework, component) {
+  const result = await query(
+    `SELECT f.filename, f.content
+     FROM components c
+     JOIN component_files f ON f.component_id = c.id
+     WHERE c.framework = $1 AND c.component = $2
+     ORDER BY f.filename`,
+    [framework, component]
+  );
+
+  if (!result.rows.length) {
+    const error = new Error("Component not found.");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  return {
+    framework,
+    component,
+    files: result.rows.map((row) => ({
+      filename: row.filename,
+      content: row.content
+    }))
+  };
+}
+
+async function countComponentLines(framework, component) {
+  const result = await query(
+    `SELECT f.filename, f.content
+     FROM components c
+     JOIN component_files f ON f.component_id = c.id
+     WHERE c.framework = $1 AND c.component = $2
+     ORDER BY f.filename`,
+    [framework, component]
+  );
+
+  if (!result.rows.length) {
+    const error = new Error("Component not found.");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const fileCounts = result.rows.map((row) => {
+    const text = row.content || "";
+    const lineCount = text.length ? text.split(/\r?\n/).length : 0;
+    return { filename: row.filename, lines: lineCount };
+  });
+
+  const totalLines = fileCounts.reduce((sum, file) => sum + file.lines, 0);
+
+  return {
+    framework,
+    component,
+    totalLines,
+    files: fileCounts
+  };
+}
+
+async function countAllComponentLines() {
+  const totalResult = await query(
+    `SELECT
+       COALESCE(
+         SUM(
+           CASE
+             WHEN f.content IS NULL OR f.content = '' THEN 0
+             ELSE LENGTH(f.content) - LENGTH(REPLACE(f.content, E'\n', '')) + 1
+           END
+         ),
+         0
+       )::BIGINT AS total_lines,
+       COUNT(DISTINCT c.id)::INT AS total_components,
+       COUNT(f.id)::INT AS total_files
+     FROM components c
+     LEFT JOIN component_files f ON f.component_id = c.id`
+  );
+
+  const frameworkResult = await query(
+    `SELECT
+       c.framework,
+       COALESCE(
+         SUM(
+           CASE
+             WHEN f.content IS NULL OR f.content = '' THEN 0
+             ELSE LENGTH(f.content) - LENGTH(REPLACE(f.content, E'\n', '')) + 1
+           END
+         ),
+         0
+       )::BIGINT AS total_lines,
+       COUNT(DISTINCT c.id)::INT AS total_components,
+       COUNT(f.id)::INT AS total_files
+     FROM components c
+     LEFT JOIN component_files f ON f.component_id = c.id
+     GROUP BY c.framework
+     ORDER BY c.framework`
+  );
+
+  const totals = totalResult.rows[0] || {
+    total_lines: 0,
+    total_components: 0,
+    total_files: 0
+  };
+
+  const byFramework = Object.fromEntries(
+    FRAMEWORKS.map((framework) => [
+      framework,
+      { totalLines: 0, totalComponents: 0, totalFiles: 0 }
+    ])
+  );
+
+  for (const row of frameworkResult.rows) {
+    byFramework[row.framework] = {
+      totalLines: Number(row.total_lines || 0),
+      totalComponents: Number(row.total_components || 0),
+      totalFiles: Number(row.total_files || 0)
+    };
+  }
+
+  return {
+    totalLines: Number(totals.total_lines || 0),
+    totalComponents: Number(totals.total_components || 0),
+    totalFiles: Number(totals.total_files || 0),
+    byFramework
   };
 }
 
@@ -290,6 +469,10 @@ async function deleteComponent(framework, component) {
 module.exports = {
   createComponent,
   listComponents,
+  searchComponents,
   getComponentFiles,
+  getComponentContent,
+  countComponentLines,
+  countAllComponentLines,
   deleteComponent
 };

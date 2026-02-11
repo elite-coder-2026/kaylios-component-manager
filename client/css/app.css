@@ -1,7 +1,7 @@
 body {
   background: #fafafa;
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 .window {
@@ -22,6 +22,70 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.right-sidebar {
+  border-left: 1px solid #e5e7eb;
+  padding-left: 12px;
+}
+
+.component-info {
+  display: grid;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.component-info__title {
+  margin: 0;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #111827;
+}
+
+.component-info__subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #374151;
+}
+
+.component-info__meta,
+.component-info__empty {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #374151;
+}
+
+.component-info__files {
+  margin: 0;
+  padding-left: 16px;
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #1f2937;
+}
+
+.component-info__actions {
+  margin-top: 6px;
+}
+
+.component-info__delete-button {
+  width: 100%;
+  border: 1px solid #ef4444;
+  background: #fff1f2;
+  color: #b91c1c;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .left-sidebar__toolbar {

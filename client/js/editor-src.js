@@ -303,40 +303,113 @@ async function loadComponent(framework, component, fileRole = "main") {
   }
 
   // Files live in project root `components/`, while the UI is served from `client/`.
-  const baseA = `../components/${framework}/${component}`;
-  const baseB = `components/${framework}/${component}`;
-  const angularBaseA = `../components/${framework}/${component}.component`;
-  const angularBaseB = `components/${framework}/${component}.component`;
+  // Preferred layout: components/<framework>/<component>/<component>.<ext>
+  // Legacy fallback: components/<framework>/<component>.<ext>
+  const nestedBaseA = `../components/${framework}/${component}/${component}`;
+  const nestedBaseB = `components/${framework}/${component}/${component}`;
+  const legacyBaseA = `../components/${framework}/${component}`;
+  const legacyBaseB = `components/${framework}/${component}`;
+  const nestedAngularBaseA = `../components/${framework}/${component}/${component}.component`;
+  const nestedAngularBaseB = `components/${framework}/${component}/${component}.component`;
+  const legacyAngularBaseA = `../components/${framework}/${component}.component`;
+  const legacyAngularBaseB = `components/${framework}/${component}.component`;
 
   const fileMap = framework === "angular"
     ? {
-        html: [`${angularBaseA}.html`, `${angularBaseB}.html`, `${baseA}.html`, `${baseB}.html`],
+        html: [
+          `${nestedAngularBaseA}.html`,
+          `${nestedAngularBaseB}.html`,
+          `${legacyAngularBaseA}.html`,
+          `${legacyAngularBaseB}.html`,
+          `${nestedBaseA}.html`,
+          `${nestedBaseB}.html`,
+          `${legacyBaseA}.html`,
+          `${legacyBaseB}.html`
+        ],
         javascript: fileRole === "spec"
           ? [
-              `${angularBaseA}.spec.ts`,
-              `${angularBaseB}.spec.ts`,
-              `${angularBaseA}.ts`,
-              `${angularBaseB}.ts`,
-              `${baseA}.spec.ts`,
-              `${baseB}.spec.ts`,
-              `${baseA}.ts`,
-              `${baseB}.ts`,
-              `${baseA}.js`,
-              `${baseB}.js`
+              `${nestedAngularBaseA}.spec.ts`,
+              `${nestedAngularBaseB}.spec.ts`,
+              `${legacyAngularBaseA}.spec.ts`,
+              `${legacyAngularBaseB}.spec.ts`,
+              `${nestedAngularBaseA}.ts`,
+              `${nestedAngularBaseB}.ts`,
+              `${legacyAngularBaseA}.ts`,
+              `${legacyAngularBaseB}.ts`,
+              `${nestedBaseA}.spec.ts`,
+              `${nestedBaseB}.spec.ts`,
+              `${legacyBaseA}.spec.ts`,
+              `${legacyBaseB}.spec.ts`,
+              `${nestedBaseA}.ts`,
+              `${nestedBaseB}.ts`,
+              `${legacyBaseA}.ts`,
+              `${legacyBaseB}.ts`,
+              `${nestedBaseA}.js`,
+              `${nestedBaseB}.js`,
+              `${legacyBaseA}.js`,
+              `${legacyBaseB}.js`
             ]
-          : [`${angularBaseA}.ts`, `${angularBaseB}.ts`, `${baseA}.ts`, `${baseB}.ts`, `${baseA}.js`, `${baseB}.js`],
-        scss: [`${angularBaseA}.scss`, `${angularBaseB}.scss`, `${baseA}.scss`, `${baseB}.scss`]
+          : [
+              `${nestedAngularBaseA}.ts`,
+              `${nestedAngularBaseB}.ts`,
+              `${legacyAngularBaseA}.ts`,
+              `${legacyAngularBaseB}.ts`,
+              `${nestedBaseA}.ts`,
+              `${nestedBaseB}.ts`,
+              `${legacyBaseA}.ts`,
+              `${legacyBaseB}.ts`,
+              `${nestedBaseA}.js`,
+              `${nestedBaseB}.js`,
+              `${legacyBaseA}.js`,
+              `${legacyBaseB}.js`
+            ],
+        scss: [
+          `${nestedAngularBaseA}.scss`,
+          `${nestedAngularBaseB}.scss`,
+          `${legacyAngularBaseA}.scss`,
+          `${legacyAngularBaseB}.scss`,
+          `${nestedBaseA}.scss`,
+          `${nestedBaseB}.scss`,
+          `${legacyBaseA}.scss`,
+          `${legacyBaseB}.scss`
+        ]
       }
     : framework === "react"
       ? {
-          html: [`${baseA}.jsx`, `${baseB}.jsx`, `${baseA}.tsx`, `${baseB}.tsx`, `${baseA}.js`, `${baseB}.js`],
-          javascript: [`${baseA}.jsx`, `${baseB}.jsx`, `${baseA}.tsx`, `${baseB}.tsx`, `${baseA}.js`, `${baseB}.js`],
-          scss: [`${baseA}.scss`, `${baseB}.scss`]
+          html: [
+            `${nestedBaseA}.jsx`,
+            `${nestedBaseB}.jsx`,
+            `${legacyBaseA}.jsx`,
+            `${legacyBaseB}.jsx`,
+            `${nestedBaseA}.tsx`,
+            `${nestedBaseB}.tsx`,
+            `${legacyBaseA}.tsx`,
+            `${legacyBaseB}.tsx`,
+            `${nestedBaseA}.js`,
+            `${nestedBaseB}.js`,
+            `${legacyBaseA}.js`,
+            `${legacyBaseB}.js`
+          ],
+          javascript: [
+            `${nestedBaseA}.jsx`,
+            `${nestedBaseB}.jsx`,
+            `${legacyBaseA}.jsx`,
+            `${legacyBaseB}.jsx`,
+            `${nestedBaseA}.tsx`,
+            `${nestedBaseB}.tsx`,
+            `${legacyBaseA}.tsx`,
+            `${legacyBaseB}.tsx`,
+            `${nestedBaseA}.js`,
+            `${nestedBaseB}.js`,
+            `${legacyBaseA}.js`,
+            `${legacyBaseB}.js`
+          ],
+          scss: [`${nestedBaseA}.scss`, `${nestedBaseB}.scss`, `${legacyBaseA}.scss`, `${legacyBaseB}.scss`]
         }
     : {
-        html: [`${baseA}.html`, `${baseB}.html`],
-        javascript: [`${baseA}.js`, `${baseB}.js`],
-        scss: [`${baseA}.scss`, `${baseB}.scss`]
+        html: [`${nestedBaseA}.html`, `${nestedBaseB}.html`, `${legacyBaseA}.html`, `${legacyBaseB}.html`],
+        javascript: [`${nestedBaseA}.js`, `${nestedBaseB}.js`, `${legacyBaseA}.js`, `${legacyBaseB}.js`],
+        scss: [`${nestedBaseA}.scss`, `${nestedBaseB}.scss`, `${legacyBaseA}.scss`, `${legacyBaseB}.scss`]
       };
 
   const nextContent = {};

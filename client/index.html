@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kaylios Component Manager</title>
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <section class="window">
+      <aside class="left-sidebar" aria-label="Component tree">
+        <div class="left-sidebar__toolbar">
+          <button id="add-component-button" class="left-sidebar__add-button" type="button">Add component</button>
+        </div>
+        <ul class="framework-list">
+          <li class="framework-list__item">
+            <h2 class="framework-list__title">React</h2>
+          </li>
+          <li class="framework-list__item">
+            <h2 class="framework-list__title">Angular</h2>
+
+          </li>
+          <li class="framework-list__item">
+            <h2 class="framework-list__title">Vue</h2>
+            
+          </li>
+          <li class="framework-list__item">
+            <h2 class="framework-list__title">Vanilla</h2>
+          </li>
+        </ul>
+      </aside>
+
+      <main class="editor">
+        <div id="editor" class="editor__canvas" aria-label="Code editor"></div>
+      </main>
+
+      <aside class="right-sidebar"></aside>
+    </section>
+
+    <div id="add-component-modal" class="component-modal" hidden>
+      <div class="component-modal__backdrop" data-component-modal-close></div>
+      <div class="component-modal__panel" role="dialog" aria-modal="true" aria-label="Add component">
+        <header class="component-modal__header">
+          <h2>Add component</h2>
+        </header>
+        <form id="add-component-form" class="left-sidebar__add-form">
+          <label class="left-sidebar__field">
+            <span>Framework</span>
+            <select id="add-component-framework" name="framework">
+              <option value="react">React</option>
+              <option value="angular">Angular</option>
+              <option value="vue">Vue</option>
+              <option value="vanilla">Vanilla</option>
+            </select>
+          </label>
+          <label class="left-sidebar__field">
+            <span>Name</span>
+            <input id="add-component-name" name="name" type="text" placeholder="component-name" required>
+          </label>
+          <label class="left-sidebar__field">
+            <span>Version</span>
+            <input id="add-component-version" name="version" type="text" placeholder="1.0.0" value="1.0.0">
+          </label>
+          <label class="left-sidebar__field">
+            <span>Author</span>
+            <input id="add-component-author" name="author" type="text" placeholder="Your name">
+          </label>
+          <label class="left-sidebar__field">
+            <span>Number</span>
+            <input id="add-component-number" name="number" type="text" placeholder="CMP-001">
+          </label>
+          <div class="left-sidebar__actions">
+            <button type="button" id="add-component-cancel" class="left-sidebar__cancel-button">Cancel</button>
+            <button type="submit" class="left-sidebar__submit-button">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/editor.js" defer></script>
+  </body>
+</html>

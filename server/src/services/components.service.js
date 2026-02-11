@@ -1,8 +1,10 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
+const { query, withTransaction } = require("../db/client");
 
 const ROOT = path.resolve(__dirname, "..", "..", "..");
 const COMPONENTS_ROOT = path.join(ROOT, "components");
+const FRAMEWORKS = ["react", "angular", "vue", "vanilla"];
 
 function toPascalCase(input) {
   return input
@@ -20,6 +22,12 @@ function ensureSafePath(base, target) {
     throw error;
   }
   return normalized;
+}
+
+function toConflictError(message) {
+  const error = new Error(message);
+  error.statusCode = 409;
+  return error;
 }
 
 function createTemplates(framework, component, metadata) {
@@ -88,6 +96,31 @@ describe("${className}", () => {
     };
   }
 
+  if (framework === "react") {
+    const componentName = `${toPascalCase(component)}Component`;
+    return {
+      [`${component}.jsx`]:
+`${metaJs}import React from "react";
+
+export default function ${componentName}() {
+  return (
+    <section className="${component}">
+      <h2>${title}</h2>
+      <p>React ${title} scaffold.</p>
+      <small>v${version} - ${author} - ${number}</small>
+    </section>
+  );
+}
+`,
+      [`${component}.scss`]:
+`.${component} {
+  display: grid;
+  gap: 0.5rem;
+}
+`
+    };
+  }
+
   return {
     [`${component}.html`]:
 `${metaHtml}<section class="${component}">
@@ -115,67 +148,89 @@ async function createComponent({ framework, component, version, author, number }
   await fs.mkdir(componentDir, { recursive: true });
 
   const templates = createTemplates(framework, component, { version, author, number });
-  for (const filename of Object.keys(templates)) {
+  const fileEntries = Object.entries(templates);
+
+  for (const [filename] of fileEntries) {
     const fullPath = ensureSafePath(componentDir, filename);
     try {
       await fs.access(fullPath);
-      const error = new Error(`Component file already exists: ${filename}`);
-      error.statusCode = 409;
-      throw error;
+      throw toConflictError(`Component file already exists: ${filename}`);
     } catch (accessError) {
       if (accessError.statusCode) throw accessError;
     }
   }
 
-  for (const [filename, content] of Object.entries(templates)) {
-    const fullPath = ensureSafePath(componentDir, filename);
-    await fs.writeFile(fullPath, content, "utf8");
+  const writtenPaths = [];
+  try {
+    await withTransaction(async (client) => {
+      let row;
+      try {
+        const result = await client.query(
+          `INSERT INTO components (framework, component, version, author_name, component_number)
+           VALUES ($1, $2, $3, $4, $5)
+           RETURNING id`,
+          [framework, component, version || "1.0.0", author || "Unknown", number || "N/A"]
+        );
+        row = result.rows[0];
+      } catch (error) {
+        if (error && error.code === "23505") {
+          throw toConflictError(`Component already exists: ${framework}/${component}`);
+        }
+        throw error;
+      }
+
+      for (const [filename, content] of fileEntries) {
+        await client.query(
+          `INSERT INTO component_files (component_id, filename, content)
+           VALUES ($1, $2, $3)`,
+          [row.id, filename, content]
+        );
+
+        const fullPath = ensureSafePath(componentDir, filename);
+        await fs.writeFile(fullPath, content, "utf8");
+        writtenPaths.push(fullPath);
+      }
+    });
+  } catch (error) {
+    await Promise.all(writtenPaths.map((filePath) => fs.unlink(filePath).catch(() => null)));
+    throw error;
   }
 
   return {
     framework,
     component,
-    files: Object.keys(templates)
+    files: fileEntries.map(([filename]) => filename)
   };
 }
 
 async function listComponents() {
-  await fs.mkdir(COMPONENTS_ROOT, { recursive: true });
-  const frameworks = await fs.readdir(COMPONENTS_ROOT, { withFileTypes: true });
-  const out = {};
+  const out = Object.fromEntries(FRAMEWORKS.map((framework) => [framework, []]));
 
-  for (const dirent of frameworks) {
-    if (!dirent.isDirectory()) continue;
-    const fw = dirent.name;
-    const folder = ensureSafePath(COMPONENTS_ROOT, fw);
-    const files = await fs.readdir(folder, { withFileTypes: true });
-    const names = new Set();
+  const result = await query(
+    `SELECT framework, component
+     FROM components
+     ORDER BY framework, component`
+  );
 
-    for (const entry of files) {
-      if (!entry.isFile()) continue;
-      const name = entry.name;
-      const componentName = name
-        .replace(/\.component\.(html|ts|spec\.ts|scss)$/i, "")
-        .replace(/\.(html|js|scss)$/i, "");
-      if (componentName) names.add(componentName);
-    }
-
-    out[fw] = Array.from(names).sort();
+  for (const row of result.rows) {
+    if (!out[row.framework]) out[row.framework] = [];
+    out[row.framework].push(row.component);
   }
 
   return out;
 }
 
 async function getComponentFiles(framework, component) {
-  const folder = ensureSafePath(COMPONENTS_ROOT, framework);
-  await fs.mkdir(folder, { recursive: true });
-  const files = await fs.readdir(folder, { withFileTypes: true });
-  const matches = files
-    .filter((entry) => entry.isFile() && entry.name.startsWith(component))
-    .map((entry) => entry.name)
-    .sort();
+  const result = await query(
+    `SELECT f.filename
+     FROM components c
+     JOIN component_files f ON f.component_id = c.id
+     WHERE c.framework = $1 AND c.component = $2
+     ORDER BY f.filename`,
+    [framework, component]
+  );
 
-  if (!matches.length) {
+  if (!result.rows.length) {
     const error = new Error("Component not found.");
     error.statusCode = 404;
     throw error;
@@ -184,29 +239,48 @@ async function getComponentFiles(framework, component) {
   return {
     framework,
     component,
-    files: matches
+    files: result.rows.map((row) => row.filename)
   };
 }
 
 async function deleteComponent(framework, component) {
-  const folder = ensureSafePath(COMPONENTS_ROOT, framework);
-  await fs.mkdir(folder, { recursive: true });
-  const files = await fs.readdir(folder, { withFileTypes: true });
-  const targets = files
-    .filter((entry) => entry.isFile() && entry.name.startsWith(component))
-    .map((entry) => ensureSafePath(folder, entry.name));
+  const componentDir = ensureSafePath(COMPONENTS_ROOT, framework);
 
-  if (!targets.length) {
+  const existing = await query(
+    `SELECT c.id, f.filename
+     FROM components c
+     LEFT JOIN component_files f ON f.component_id = c.id
+     WHERE c.framework = $1 AND c.component = $2`,
+    [framework, component]
+  );
+
+  if (!existing.rows.length) {
     const error = new Error("Component not found.");
     error.statusCode = 404;
     throw error;
   }
 
-  await Promise.all(targets.map((file) => fs.unlink(file)));
+  const files = existing.rows.map((row) => row.filename).filter(Boolean);
+
+  await withTransaction(async (client) => {
+    await client.query(
+      `DELETE FROM components
+       WHERE framework = $1 AND component = $2`,
+      [framework, component]
+    );
+  });
+
+  await Promise.all(
+    files.map((filename) => {
+      const fullPath = ensureSafePath(componentDir, filename);
+      return fs.unlink(fullPath).catch(() => null);
+    })
+  );
+
   return {
     framework,
     component,
-    deleted: targets.length
+    deleted: files.length
   };
 }
 

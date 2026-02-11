@@ -1,5 +1,8 @@
 const app = require("./app");
+const { loadEnv } = require("./config/load-env");
 const { ensureDatabase } = require("./db/client");
+
+loadEnv();
 
 const PORT = Number(process.env.PORT || 4173);
 

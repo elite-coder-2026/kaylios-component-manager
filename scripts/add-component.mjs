@@ -123,6 +123,31 @@ describe("${className}", () => {
 }
 
 function createWebTemplates(framework, componentName) {
+  if (framework === "react") {
+    const componentClass = `${toPascalCase(componentName)}Component`;
+    return {
+      [`${componentName}.jsx`]:
+        `// ${framework}/${componentName}
+import React from "react";
+
+export default function ${componentClass}() {
+  return (
+    <section className="${componentName}">
+      <h2>${componentName}</h2>
+      <p>React component scaffold.</p>
+    </section>
+  );
+}
+`,
+      [`${componentName}.scss`]:
+        `.${componentName} {
+  display: grid;
+  gap: 0.5rem;
+}
+`
+    };
+  }
+
   const fnName = componentName.replace(/-/g, "_");
   return {
     [`${componentName}.html`]:
@@ -148,7 +173,7 @@ export function ${fnName}() {
 }
 
 async function writeTemplates(componentDir, templates, force) {
-  for (const [filename] of Object.entries(templates)) {
+  for (const [filename, content] of Object.entries(templates)) {
     const filePath = path.join(componentDir, filename);
 
     try {
@@ -160,7 +185,7 @@ async function writeTemplates(componentDir, templates, force) {
       // File doesn't exist, safe to proceed
     }
 
-    await writeFile(filePath, "utf8");
+    await writeFile(filePath, content, "utf8");
   }
 }
 
@@ -171,6 +196,12 @@ function getSidebarFiles(framework, componentName) {
       { lang: "javascript", file: `${componentName}.component.ts` },
       { lang: "javascript", fileRole: "spec", file: `${componentName}.component.spec.ts` },
       { lang: "scss", file: `${componentName}.component.scss` }
+    ];
+  }
+  if (framework === "react") {
+    return [
+      { lang: "javascript", file: `${componentName}.jsx` },
+      { lang: "scss", file: `${componentName}.scss` }
     ];
   }
   return [

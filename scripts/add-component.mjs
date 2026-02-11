@@ -260,7 +260,7 @@ async function main() {
   }
 
   const root = process.cwd();
-  const componentDir = path.join(root, "components", framework);
+  const componentDir = path.join(root, "components", framework, componentName);
 
   try {
     await mkdir(componentDir, { recursive: true });

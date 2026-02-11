@@ -1,66 +1,83 @@
 const componentsService = require("../services/components.service");
-const { createComponentSchema, componentParamsSchema } = require("../validation/components.validation");
+const {
+  createComponentSchema,
+  componentParamsSchema,
+  searchComponentsQuerySchema
+} = require("../validation/components.validation");
 
-async function createComponent(req, res, next) {
-  try {
-    const { error, value } = createComponentSchema.validate(req.body, { abortEarly: false });
-    if (error) {
-      const err = new Error(error.details.map((d) => d.message).join("; "));
-      err.statusCode = 400;
-      throw err;
+function validate(schema, data) {
+  const { error, value } = schema.validate(data, { abortEarly: false });
+  if (error) {
+    const err = new Error(error.details.map((d) => d.message).join("; "));
+    err.statusCode = 400;
+    throw err;
+  }
+  return value;
+}
+
+function asyncHandler(handler) {
+  return async (req, res, next) => {
+    try {
+      await handler(req, res, next);
+    } catch (error) {
+      next(error);
     }
-
-    const created = await componentsService.createComponent(value);
-    res.status(201).json({ ok: true, ...created });
-  } catch (error) {
-    next(error);
-  }
+  };
 }
 
-async function listComponents(_req, res, next) {
-  try {
-    const components = await componentsService.listComponents();
-    res.json({ ok: true, components });
-  } catch (error) {
-    next(error);
-  }
-}
+const createComponent = asyncHandler(async (req, res) => {
+  const value = validate(createComponentSchema, req.body);
+  const created = await componentsService.createComponent(value);
+  res.status(201).json({ ok: true, ...created });
+});
 
-async function getComponentFiles(req, res, next) {
-  try {
-    const { error, value } = componentParamsSchema.validate(req.params);
-    if (error) {
-      const err = new Error(error.details.map((d) => d.message).join("; "));
-      err.statusCode = 400;
-      throw err;
-    }
+const listComponents = asyncHandler(async (_req, res) => {
+  const components = await componentsService.listComponents();
+  res.status(200).json({ ok: true, components });
+});
 
-    const found = await componentsService.getComponentFiles(value.framework, value.component);
-    res.json({ ok: true, ...found });
-  } catch (error) {
-    next(error);
-  }
-}
+const searchComponents = asyncHandler(async (req, res) => {
+  const value = validate(searchComponentsQuerySchema, req.query);
+  const result = await componentsService.searchComponents(value);
+  res.status(200).json({ ok: true, ...result });
+});
 
-async function deleteComponent(req, res, next) {
-  try {
-    const { error, value } = componentParamsSchema.validate(req.params);
-    if (error) {
-      const err = new Error(error.details.map((d) => d.message).join("; "));
-      err.statusCode = 400;
-      throw err;
-    }
+const getComponentFiles = asyncHandler(async (req, res) => {
+  const value = validate(componentParamsSchema, req.params);
+  const found = await componentsService.getComponentFiles(value.framework, value.component);
+  res.status(200).json({ ok: true, ...found });
+});
 
-    const deleted = await componentsService.deleteComponent(value.framework, value.component);
-    res.json({ ok: true, ...deleted });
-  } catch (error) {
-    next(error);
-  }
-}
+const deleteComponent = asyncHandler(async (req, res) => {
+  const value = validate(componentParamsSchema, req.params);
+  const deleted = await componentsService.deleteComponent(value.framework, value.component);
+  res.status(200).json({ ok: true, ...deleted });
+});
+
+const getComponentContent = asyncHandler(async (req, res) => {
+  const value = validate(componentParamsSchema, req.params);
+  const found = await componentsService.getComponentContent(value.framework, value.component);
+  res.status(200).json({ ok: true, ...found });
+});
+
+const countComponentLines = asyncHandler(async (req, res) => {
+  const value = validate(componentParamsSchema, req.params);
+  const result = await componentsService.countComponentLines(value.framework, value.component);
+  res.status(200).json({ ok: true, ...result });
+});
+
+const countAllComponentLines = asyncHandler(async (_req, res) => {
+  const result = await componentsService.countAllComponentLines();
+  res.status(200).json({ ok: true, ...result });
+});
 
 module.exports = {
   createComponent,
   listComponents,
+  searchComponents,
   getComponentFiles,
+  getComponentContent,
+  countComponentLines,
+  countAllComponentLines,
   deleteComponent
 };

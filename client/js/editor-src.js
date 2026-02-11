@@ -24,7 +24,7 @@ const API_BASE_URL = "http://localhost:4173/api";
 
 const extensionByLang = {
   html: html(),
-  javascript: javascript(),
+  javascript: javascript({ jsx: true, typescript: true }),
   scss: css()
 };
 
@@ -119,6 +119,15 @@ function createGeneratedContent(framework, component, metadata = {}) {
     };
   }
 
+  if (framework === "react") {
+    const componentName = `${toTitleCase(component).replace(/\s+/g, "")}Component`;
+    return {
+      html: `<!-- ${framework}/${component} rendered from ${component}.jsx -->\n`,
+      javascript: `${jsMeta}\nimport React from "react";\n\nexport default function ${componentName}() {\n  return (\n    <section className="${component}">\n      <h2>${title}</h2>\n      <p>React ${title} scaffold.</p>\n      <small>v${version} - ${author} - ${number}</small>\n    </section>\n  );\n}\n`,
+      scss: `.${component} {\n  display: grid;\n  gap: 0.5rem;\n}\n`
+    };
+  }
+
   return {
     html: `${htmlMeta}\n<section class="${component}">\n  <h2>${title}</h2>\n  <p>${framework} ${title} scaffold.</p>\n  <small>v${version} - ${author} - ${number}</small>\n</section>\n`,
     javascript: `${jsMeta}\nexport function ${component.replace(/-/g, "_")}() {\n  return "${framework}:${component}";\n}\n`,
@@ -160,6 +169,9 @@ function createComponentTreeNode(framework, component) {
     files.appendChild(createFileItemLink(framework, component, "javascript", `${component}.component.ts`));
     files.appendChild(createFileItemLink(framework, component, "javascript", `${component}.component.spec.ts`, "spec"));
     files.appendChild(createFileItemLink(framework, component, "scss", `${component}.component.scss`));
+  } else if (framework === "react") {
+    files.appendChild(createFileItemLink(framework, component, "javascript", `${component}.jsx`));
+    files.appendChild(createFileItemLink(framework, component, "scss", `${component}.scss`));
   } else {
     files.appendChild(createFileItemLink(framework, component, "html", `${component}.html`));
     files.appendChild(createFileItemLink(framework, component, "javascript", `${component}.js`));
@@ -215,6 +227,57 @@ async function createComponentOnApi(payload) {
   return body;
 }
 
+async function listComponentsOnApi() {
+  const response = await fetch(`${API_BASE_URL}/components`);
+
+  let body = null;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+
+  if (!response.ok || !body?.ok || typeof body.components !== "object") {
+    const reason = body?.error || `Request failed (${response.status})`;
+    throw new Error(reason);
+  }
+
+  return body.components;
+}
+
+function getFrameworkItemByName(framework) {
+  return Array.from(document.querySelectorAll(".framework-list__item")).find((item) => {
+    const title = item.querySelector(".framework-list__title");
+    return title && title.textContent.trim().toLowerCase() === framework;
+  });
+}
+
+function ensureComponentTreeList(frameworkItem) {
+  let list = frameworkItem.querySelector(".component-tree-list");
+  if (!list) {
+    list = document.createElement("ul");
+    list.className = "component-tree-list";
+    frameworkItem.appendChild(list);
+  }
+  return list;
+}
+
+async function syncSidebarFromApi() {
+  const componentsByFramework = await listComponentsOnApi();
+
+  Object.entries(componentsByFramework).forEach(([framework, names]) => {
+    const frameworkItem = getFrameworkItemByName(framework);
+    if (!frameworkItem) return;
+
+    const list = ensureComponentTreeList(frameworkItem);
+    list.textContent = "";
+
+    names.forEach((name) => {
+      list.appendChild(createComponentTreeNode(framework, name));
+    });
+  });
+}
+
 async function fetchTextFirstOk(paths) {
   for (const path of paths) {
     try {
@@ -264,6 +327,12 @@ async function loadComponent(framework, component, fileRole = "main") {
           : [`${angularBaseA}.ts`, `${angularBaseB}.ts`, `${baseA}.ts`, `${baseB}.ts`, `${baseA}.js`, `${baseB}.js`],
         scss: [`${angularBaseA}.scss`, `${angularBaseB}.scss`, `${baseA}.scss`, `${baseB}.scss`]
       }
+    : framework === "react"
+      ? {
+          html: [`${baseA}.jsx`, `${baseB}.jsx`, `${baseA}.tsx`, `${baseB}.tsx`, `${baseA}.js`, `${baseB}.js`],
+          javascript: [`${baseA}.jsx`, `${baseB}.jsx`, `${baseA}.tsx`, `${baseB}.tsx`, `${baseA}.js`, `${baseB}.js`],
+          scss: [`${baseA}.scss`, `${baseB}.scss`]
+        }
     : {
         html: [`${baseA}.html`, `${baseB}.html`],
         javascript: [`${baseA}.js`, `${baseB}.js`],
@@ -316,6 +385,8 @@ if (editorRoot) {
     state,
     parent: editorRoot
   });
+  void syncSidebarFromApi().catch(() => {});
+
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -387,10 +458,7 @@ if (editorRoot) {
       };
       if (!component) return;
 
-      const frameworkItem = Array.from(document.querySelectorAll(".framework-list__item")).find((item) => {
-        const title = item.querySelector(".framework-list__title");
-        return title && title.textContent.trim().toLowerCase() === framework;
-      });
+      const frameworkItem = getFrameworkItemByName(framework);
       if (!frameworkItem) return;
 
       const existing = frameworkItem.querySelector(`.file-item[data-component="${component}"]`);
@@ -410,13 +478,15 @@ if (editorRoot) {
 
       generatedComponents.set(componentKey(framework, component), createGeneratedContent(framework, component, metadata));
 
-      const list = frameworkItem.querySelector(".component-tree-list");
-      if (!list) return;
+      try {
+        await syncSidebarFromApi();
+      } catch {
+        const list = ensureComponentTreeList(frameworkItem);
+        const node = createComponentTreeNode(framework, component);
+        list.appendChild(node);
+      }
 
-      const node = createComponentTreeNode(framework, component);
-      list.appendChild(node);
-
-      const firstFile = node.querySelector(".file-item");
+      const firstFile = document.querySelector(`.file-item[data-framework="${framework}"][data-component="${component}"]`);
       if (firstFile) firstFile.click();
 
       closeAddComponentModal();

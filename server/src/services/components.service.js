@@ -144,7 +144,8 @@ export default function ${componentName}() {
 }
 
 async function createComponent({ framework, component, version, author, number }) {
-  const componentDir = ensureSafePath(COMPONENTS_ROOT, framework);
+  const frameworkDir = ensureSafePath(COMPONENTS_ROOT, framework);
+  const componentDir = ensureSafePath(frameworkDir, component);
   await fs.mkdir(componentDir, { recursive: true });
 
   const templates = createTemplates(framework, component, { version, author, number });
@@ -244,7 +245,8 @@ async function getComponentFiles(framework, component) {
 }
 
 async function deleteComponent(framework, component) {
-  const componentDir = ensureSafePath(COMPONENTS_ROOT, framework);
+  const frameworkDir = ensureSafePath(COMPONENTS_ROOT, framework);
+  const componentDir = ensureSafePath(frameworkDir, component);
 
   const existing = await query(
     `SELECT c.id, f.filename
@@ -276,6 +278,7 @@ async function deleteComponent(framework, component) {
       return fs.unlink(fullPath).catch(() => null);
     })
   );
+  await fs.rmdir(componentDir).catch(() => null);
 
   return {
     framework,

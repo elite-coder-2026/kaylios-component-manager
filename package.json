@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "component:add": "node scripts/add-component.mjs",
+    "cli": "node cli/kcm.mjs",
+    "cli:interactive": "node cli/kcm.mjs interactive",
     "build:bundle": "esbuild client/js/editor-src.js --bundle --minify --sourcemap --platform=browser --format=iife --charset=ascii --target=es2017 --outfile=client/js/editor.es2017.js",
     "build:transpile": "babel client/js/editor.es2017.js --out-file client/js/editor.js --source-maps",
     "build": "npm run build:bundle && npm run build:transpile"
@@ -22,6 +24,11 @@
     "@codemirror/lang-html": "^6.4.9",
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/state": "^6.4.1",
-    "@codemirror/view": "^6.26.3"
+    "@codemirror/view": "^6.26.3",
+    "commander": "^14.0.3",
+    "inquirer": "^13.2.2"
+  },
+  "bin": {
+    "kcm": "./cli/kcm.mjs"
   }
 }

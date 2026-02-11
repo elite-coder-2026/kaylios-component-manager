@@ -8,6 +8,7 @@ import { css } from "@codemirror/lang-css";
 
 const editorRoot = document.getElementById("editor");
 const sidebarRoot = document.querySelector(".left-sidebar");
+const rightSidebarRoot = document.querySelector(".right-sidebar");
 const tabs = Array.from(document.querySelectorAll(".editor__tab"));
 const addComponentModal = document.getElementById("add-component-modal");
 const addComponentButton = document.getElementById("add-component-button");
@@ -75,6 +76,8 @@ const emptyContent = {
 let activeLang = "html";
 let currentContent = { ...emptyContent };
 const generatedComponents = new Map();
+let activeComponentInfo = null;
+let lineTotals = null;
 
 function componentKey(framework, component) {
   return `${framework}:${component}`;
@@ -100,6 +103,94 @@ function toTitleCase(input) {
 
 function getFileItems() {
   return Array.from(document.querySelectorAll(".file-item"));
+}
+
+function renderComponentInfo(state = activeComponentInfo) {
+  if (!rightSidebarRoot) return;
+
+  const totalsSection = lineTotals
+    ? `
+      <section class="component-info component-info--totals">
+        <h2 class="component-info__title">Project Totals</h2>
+        <p class="component-info__meta"><strong>Lines:</strong> ${lineTotals.totalLines}</p>
+        <p class="component-info__meta"><strong>Components:</strong> ${lineTotals.totalComponents}</p>
+      </section>
+    `
+    : `
+      <section class="component-info component-info--totals">
+        <h2 class="component-info__title">Project Totals</h2>
+        <p class="component-info__empty">Totals unavailable.</p>
+      </section>
+    `;
+
+  if (!state) {
+    rightSidebarRoot.innerHTML = `
+      ${totalsSection}
+      <section class="component-info">
+        <h2 class="component-info__title">Component Info</h2>
+        <p class="component-info__empty">Select a component file to view details.</p>
+      </section>
+    `;
+    return;
+  }
+
+  const filesHtml = (state.files || [])
+    .map((file) => {
+      const lineText = typeof file.lines === "number" ? ` (${file.lines} lines)` : "";
+      return `<li>${file.filename}${lineText}</li>`;
+    })
+    .join("");
+
+  const totalLinesHtml = Number.isFinite(state.totalLines)
+    ? `<p class="component-info__meta"><strong>Total lines:</strong> ${state.totalLines}</p>`
+    : "";
+
+  const activeFileHtml = state.activeFile
+    ? `<p class="component-info__meta"><strong>Active file:</strong> ${state.activeFile}</p>`
+    : "";
+
+  const deleteActionHtml = `
+    <div class="component-info__actions">
+      <button
+        type="button"
+        class="component-info__delete-button"
+        data-delete-component="true"
+        data-framework="${state.framework}"
+        data-component="${state.component}"
+      >
+        Delete Component
+      </button>
+    </div>
+  `;
+
+  rightSidebarRoot.innerHTML = `
+    ${totalsSection}
+    <section class="component-info">
+      <h2 class="component-info__title">Component Info</h2>
+      <p class="component-info__meta"><strong>Framework:</strong> ${state.framework}</p>
+      <p class="component-info__meta"><strong>Component:</strong> ${state.component}</p>
+      ${activeFileHtml}
+      ${totalLinesHtml}
+      <h3 class="component-info__subtitle">Files</h3>
+      <ul class="component-info__files">${filesHtml}</ul>
+      ${deleteActionHtml}
+    </section>
+  `;
+}
+
+async function refreshLineTotals() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/components/line-count-total`);
+    const body = await response.json();
+    if (!response.ok || !body?.ok) throw new Error(body?.error || `Request failed (${response.status})`);
+    lineTotals = {
+      totalLines: Number(body.totalLines || 0),
+      totalComponents: Number(body.totalComponents || 0)
+    };
+  } catch {
+    lineTotals = null;
+  }
+  renderComponentInfo();
 }
 
 function createGeneratedContent(framework, component, metadata = {}) {
@@ -227,6 +318,26 @@ async function createComponentOnApi(payload) {
   return body;
 }
 
+async function deleteComponentOnApi(framework, component) {
+  const response = await fetch(`${API_BASE_URL}/components/${framework}/${component}`, {
+    method: "DELETE"
+  });
+
+  let body = null;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+
+  if (!response.ok || !body?.ok) {
+    const reason = body?.error || `Request failed (${response.status})`;
+    throw new Error(reason);
+  }
+
+  return body;
+}
+
 async function listComponentsOnApi() {
   const response = await fetch(`${API_BASE_URL}/components`);
 
@@ -243,6 +354,24 @@ async function listComponentsOnApi() {
   }
 
   return body.components;
+}
+
+async function getComponentInfoOnApi(framework, component) {
+  const response = await fetch(`${API_BASE_URL}/components/${framework}/${component}/line-count`);
+
+  let body = null;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+
+  if (!response.ok || !body?.ok) {
+    const reason = body?.error || `Request failed (${response.status})`;
+    throw new Error(reason);
+  }
+
+  return body;
 }
 
 function getFrameworkItemByName(framework) {
@@ -276,6 +405,7 @@ async function syncSidebarFromApi() {
       list.appendChild(createComponentTreeNode(framework, name));
     });
   });
+  void refreshLineTotals();
 }
 
 async function fetchTextFirstOk(paths) {
@@ -459,6 +589,8 @@ if (editorRoot) {
     parent: editorRoot
   });
   void syncSidebarFromApi().catch(() => {});
+  void refreshLineTotals();
+  renderComponentInfo();
 
 
   tabs.forEach((tab) => {
@@ -482,12 +614,69 @@ if (editorRoot) {
       const component = link.dataset.component;
       const nextLang = link.dataset.lang || "html";
       const fileRole = link.dataset.fileRole || "main";
+      const activeFile = link.textContent || "";
 
       await loadComponent(framework, component, fileRole);
 
       setActiveTab(nextLang);
       view.dispatch({ effects: language.reconfigure(extensionByLang[nextLang]) });
       replaceDoc(view, currentContent[nextLang]);
+
+      try {
+        const info = await getComponentInfoOnApi(framework, component);
+        activeComponentInfo = {
+          framework: info.framework,
+          component: info.component,
+          files: info.files,
+          totalLines: info.totalLines,
+          activeFile
+        };
+        renderComponentInfo();
+      } catch {
+        const files = getFileItems()
+          .filter((item) => item.dataset.framework === framework && item.dataset.component === component)
+          .map((item) => ({ filename: item.textContent || "", lines: null }));
+        activeComponentInfo = {
+          framework,
+          component,
+          files,
+          totalLines: null,
+          activeFile
+        };
+        renderComponentInfo();
+      }
+    });
+  }
+
+  if (rightSidebarRoot) {
+    rightSidebarRoot.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-delete-component]");
+      if (!button) return;
+
+      const framework = button.dataset.framework;
+      const component = button.dataset.component;
+      if (!framework || !component) return;
+
+      const confirmed = window.confirm(`Delete component "${component}" from ${framework}?`);
+      if (!confirmed) return;
+
+      try {
+        await deleteComponentOnApi(framework, component);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        window.alert(`Failed to delete component: ${message}`);
+        return;
+      }
+
+      generatedComponents.delete(componentKey(framework, component));
+      activeComponentInfo = null;
+      currentContent = { ...emptyContent };
+      setActiveFile(null);
+      replaceDoc(view, currentContent[activeLang]);
+
+      await syncSidebarFromApi().catch(() => {});
+      await refreshLineTotals();
+      renderComponentInfo();
     });
   }
 
@@ -557,6 +746,7 @@ if (editorRoot) {
         const list = ensureComponentTreeList(frameworkItem);
         const node = createComponentTreeNode(framework, component);
         list.appendChild(node);
+        void refreshLineTotals();
       }
 
       const firstFile = document.querySelector(`.file-item[data-framework="${framework}"][data-component="${component}"]`);

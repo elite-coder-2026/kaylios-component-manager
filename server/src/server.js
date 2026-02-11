@@ -1,8 +1,18 @@
 const app = require("./app");
+const { ensureDatabase } = require("./db/client");
 
 const PORT = Number(process.env.PORT || 4173);
 
-app.listen(PORT, () => {
+async function start() {
+  await ensureDatabase();
+  app.listen(PORT, () => {
+    // eslint-disable-next-line no-console
+    console.log(`API listening on http://localhost:${PORT}`);
+  });
+}
+
+start().catch((error) => {
   // eslint-disable-next-line no-console
-  console.log(`API listening on http://localhost:${PORT}`);
+  console.error(error);
+  process.exit(1);
 });

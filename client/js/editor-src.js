@@ -20,6 +20,8 @@ const addComponentNumber = document.getElementById("add-component-number");
 const addComponentCancel = document.getElementById("add-component-cancel");
 const addComponentBackdropClose = document.querySelector("[data-component-modal-close]");
 
+const API_BASE_URL = "http://localhost:4173/api";
+
 const extensionByLang = {
   html: html(),
   javascript: javascript(),
@@ -187,6 +189,30 @@ function closeAddComponentModal() {
   if (!addComponentModal || !addComponentForm) return;
   addComponentModal.hidden = true;
   addComponentForm.reset();
+}
+
+async function createComponentOnApi(payload) {
+  const response = await fetch(`${API_BASE_URL}/components`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  let body = null;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+
+  if (!response.ok || !body?.ok) {
+    const reason = body?.error || `Request failed (${response.status})`;
+    throw new Error(reason);
+  }
+
+  return body;
 }
 
 async function fetchTextFirstOk(paths) {
@@ -371,6 +397,14 @@ if (editorRoot) {
       if (existing) {
         existing.click();
         closeAddComponentModal();
+        return;
+      }
+
+      try {
+        await createComponentOnApi({ framework, component, ...metadata });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        window.alert(`Failed to create component: ${message}`);
         return;
       }
 

@@ -4,7 +4,7 @@ const { query, withTransaction } = require("../db/client");
 
 const ROOT = path.resolve(__dirname, "..", "..", "..");
 const COMPONENTS_ROOT = path.join(ROOT, "components");
-const FRAMEWORKS = ["react", "angular", "vue", "vanilla"];
+const FRAMEWORKS = ["react", "vue", "vanilla"];
 
 function toPascalCase(input) {
   return input
@@ -40,61 +40,6 @@ function createTemplates(framework, component, metadata) {
     .join(" ");
   const metaHtml = `<!-- ${framework}/${component} | version: ${version} | author: ${author} | number: ${number} -->\n`;
   const metaJs = `// ${framework}/${component} | version: ${version} | author: ${author} | number: ${number}\n`;
-
-  if (framework === "angular") {
-    const className = `${toPascalCase(component)}Component`;
-    return {
-      [`${component}.component.html`]:
-`${metaHtml}<section class="${component}">
-  <h2>${title}</h2>
-  <p>Angular ${title} template.</p>
-  <small>v${version} - ${author} - ${number}</small>
-</section>
-`,
-      [`${component}.component.ts`]:
-`${metaJs}import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
-
-@Component({
-  selector: "app-${component}",
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: "./${component}.component.html",
-  styleUrl: "./${component}.component.scss"
-})
-export class ${className} {}
-`,
-      [`${component}.component.spec.ts`]:
-`${metaJs}import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ${className} } from "./${component}.component";
-
-describe("${className}", () => {
-  let component: ${className};
-  let fixture: ComponentFixture<${className}>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [${className}]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(${className});
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it("creates", () => {
-    expect(component).toBeTruthy();
-  });
-});
-`,
-      [`${component}.component.scss`]:
-`.${component} {
-  display: grid;
-  gap: 0.5rem;
-}
-`
-    };
-  }
 
   if (framework === "react") {
     const componentName = `${toPascalCase(component)}Component`;
@@ -143,6 +88,54 @@ export default function ${componentName}() {
   };
 }
 
+function countLines(content) {
+  return content.length ? content.split(/\r?\n/).length : 0;
+}
+
+function inferLegacyComponentName(_framework, filename) {
+  const genericMatch = filename.match(/^(.+)\.(html|js|scss|jsx|tsx|ts|css)$/);
+  if (genericMatch) return genericMatch[1];
+  return null;
+}
+
+function inferComponentNameFromRelativePath(framework, relativePath) {
+  const normalized = relativePath.split(path.sep).filter(Boolean);
+  if (!normalized.length) return null;
+  if (normalized.length > 1) return normalized[0];
+  return inferLegacyComponentName(framework, normalized[0]);
+}
+
+async function collectFilesWithLineCounts(dirPath, prefix = "") {
+  let entries;
+  try {
+    entries = await fs.readdir(dirPath, { withFileTypes: true });
+  } catch (error) {
+    if (error && error.code === "ENOENT") return [];
+    throw error;
+  }
+
+  entries.sort((a, b) => a.name.localeCompare(b.name));
+
+  const files = [];
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    const relative = prefix ? path.join(prefix, entry.name) : entry.name;
+
+    if (entry.isDirectory()) {
+      const nested = await collectFilesWithLineCounts(fullPath, relative);
+      files.push(...nested);
+      continue;
+    }
+
+    if (!entry.isFile()) continue;
+
+    const content = await fs.readFile(fullPath, "utf8");
+    files.push({ filename: relative, lines: countLines(content) });
+  }
+
+  return files;
+}
+
 async function createComponent({ framework, component, version, author, number }) {
   const frameworkDir = ensureSafePath(COMPONENTS_ROOT, framework);
   const componentDir = ensureSafePath(frameworkDir, component);
@@ -155,7 +148,7 @@ async function createComponent({ framework, component, version, author, number }
     const fullPath = ensureSafePath(componentDir, filename);
     try {
       await fs.access(fullPath);
-      throw toConflictError(`Component file already exists: ${filename}`);
+      // throw toConflictError(`Component file already exists: ${filename}`);
     } catch (accessError) {
       if (accessError.statusCode) throw accessError;
     }
@@ -214,7 +207,7 @@ async function listComponents() {
   );
 
   for (const row of result.rows) {
-    if (!out[row.framework]) out[row.framework] = [];
+    if (!FRAMEWORKS.includes(row.framework)) continue;
     out[row.framework].push(row.component);
   }
 
@@ -325,26 +318,43 @@ async function getComponentContent(framework, component) {
 }
 
 async function countComponentLines(framework, component) {
-  const result = await query(
-    `SELECT f.filename, f.content
-     FROM components c
-     JOIN component_files f ON f.component_id = c.id
-     WHERE c.framework = $1 AND c.component = $2
-     ORDER BY f.filename`,
-    [framework, component]
-  );
+  const frameworkDir = ensureSafePath(COMPONENTS_ROOT, framework);
+  const componentDir = ensureSafePath(frameworkDir, component);
 
-  if (!result.rows.length) {
+  let fileCounts = [];
+
+  const nestedFiles = await collectFilesWithLineCounts(componentDir);
+  if (nestedFiles.length) {
+    fileCounts = nestedFiles;
+  } else {
+    let frameworkEntries = [];
+    try {
+      frameworkEntries = await fs.readdir(frameworkDir, { withFileTypes: true });
+    } catch (error) {
+      if (!error || error.code !== "ENOENT") throw error;
+    }
+
+    const legacyCandidates = frameworkEntries
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name)
+      .filter((name) => {
+        const inferred = inferLegacyComponentName(framework, name);
+        return inferred === component;
+      })
+      .sort((a, b) => a.localeCompare(b));
+
+    for (const filename of legacyCandidates) {
+      const fullPath = ensureSafePath(frameworkDir, filename);
+      const content = await fs.readFile(fullPath, "utf8");
+      fileCounts.push({ filename, lines: countLines(content) });
+    }
+  }
+
+  if (!fileCounts.length) {
     const error = new Error("Component not found.");
     error.statusCode = 404;
     throw error;
   }
-
-  const fileCounts = result.rows.map((row) => {
-    const text = row.content || "";
-    const lineCount = text.length ? text.split(/\r?\n/).length : 0;
-    return { filename: row.filename, lines: lineCount };
-  });
 
   const totalLines = fileCounts.reduce((sum, file) => sum + file.lines, 0);
 
@@ -357,68 +367,37 @@ async function countComponentLines(framework, component) {
 }
 
 async function countAllComponentLines() {
-  const totalResult = await query(
-    `SELECT
-       COALESCE(
-         SUM(
-           CASE
-             WHEN f.content IS NULL OR f.content = '' THEN 0
-             ELSE LENGTH(f.content) - LENGTH(REPLACE(f.content, E'\n', '')) + 1
-           END
-         ),
-         0
-       )::BIGINT AS total_lines,
-       COUNT(DISTINCT c.id)::INT AS total_components,
-       COUNT(f.id)::INT AS total_files
-     FROM components c
-     LEFT JOIN component_files f ON f.component_id = c.id`
-  );
+  const byFramework = {};
+  let totalLines = 0;
+  let totalFiles = 0;
+  let totalComponents = 0;
 
-  const frameworkResult = await query(
-    `SELECT
-       c.framework,
-       COALESCE(
-         SUM(
-           CASE
-             WHEN f.content IS NULL OR f.content = '' THEN 0
-             ELSE LENGTH(f.content) - LENGTH(REPLACE(f.content, E'\n', '')) + 1
-           END
-         ),
-         0
-       )::BIGINT AS total_lines,
-       COUNT(DISTINCT c.id)::INT AS total_components,
-       COUNT(f.id)::INT AS total_files
-     FROM components c
-     LEFT JOIN component_files f ON f.component_id = c.id
-     GROUP BY c.framework
-     ORDER BY c.framework`
-  );
+  for (const framework of FRAMEWORKS) {
+    const frameworkDir = ensureSafePath(COMPONENTS_ROOT, framework);
+    const files = await collectFilesWithLineCounts(frameworkDir);
+    const componentNames = new Set();
 
-  const totals = totalResult.rows[0] || {
-    total_lines: 0,
-    total_components: 0,
-    total_files: 0
-  };
+    for (const file of files) {
+      const inferred = inferComponentNameFromRelativePath(framework, file.filename);
+      if (inferred) componentNames.add(inferred);
+    }
 
-  const byFramework = Object.fromEntries(
-    FRAMEWORKS.map((framework) => [
-      framework,
-      { totalLines: 0, totalComponents: 0, totalFiles: 0 }
-    ])
-  );
-
-  for (const row of frameworkResult.rows) {
-    byFramework[row.framework] = {
-      totalLines: Number(row.total_lines || 0),
-      totalComponents: Number(row.total_components || 0),
-      totalFiles: Number(row.total_files || 0)
+    const frameworkTotals = {
+      totalLines: files.reduce((sum, file) => sum + file.lines, 0),
+      totalComponents: componentNames.size,
+      totalFiles: files.length
     };
+
+    byFramework[framework] = frameworkTotals;
+    totalLines += frameworkTotals.totalLines;
+    totalFiles += frameworkTotals.totalFiles;
+    totalComponents += frameworkTotals.totalComponents;
   }
 
   return {
-    totalLines: Number(totals.total_lines || 0),
-    totalComponents: Number(totals.total_components || 0),
-    totalFiles: Number(totals.total_files || 0),
+    totalLines,
+    totalComponents,
+    totalFiles,
     byFramework
   };
 }

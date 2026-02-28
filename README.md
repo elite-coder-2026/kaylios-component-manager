@@ -83,7 +83,7 @@ curl -X POST http://localhost:4173/api/components \
   }'
 ```
 
-Valid frameworks: `react`, `angular`, `vue`, `vanilla`.
+Valid frameworks: `react`, `vue`, `vanilla`.
 
 Component names must be kebab-case (example: `alert-banner`).
 
@@ -91,12 +91,10 @@ Component names must be kebab-case (example: `alert-banner`).
 ### Behavior
 
 - Creates files in `components/<framework>/`
-- `angular` generates:
-  - `<name>.component.ts`
-  - `<name>.component.html`
-  - `<name>.component.scss`
-  - `<name>.component.spec.ts`
-- `react`, `vue`, `vanilla` generate:
+- `react` generates:
+  - `<name>.jsx`
+  - `<name>.scss`
+- `vue`, `vanilla` generate:
   - `<name>.html`
   - `<name>.js`
   - `<name>.scss`

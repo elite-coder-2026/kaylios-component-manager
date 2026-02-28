@@ -3,7 +3,7 @@ import { access, constants, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
-const VALID_FRAMEWORKS = ["react", "angular", "vue", "vanilla"];
+const VALID_FRAMEWORKS = ["react", "vue", "vanilla"];
 
 function fail(message) {
   console.error(`Error: ${message}`);
@@ -59,67 +59,13 @@ function parseArgs(argv) {
 function helpText() {
   return [
     "Usage:",
-    "  npm run component:add -- --framework <react|angular|vue|vanilla> --name <component-name> [--force]",
+    "  npm run component:add -- --framework <react|vue|vanilla> --name <component-name> [--force]",
     "",
     "Examples:",
     "  npm run component:add -- --framework react --name alert-banner",
-    "  npm run component:add -- --framework angular --name user-card",
+    "  npm run component:add -- --framework vue --name user-card",
     ""
   ].join("\n");
-}
-
-function createAngularTemplates(componentName) {
-  const className = `${toPascalCase(componentName)}Component`;
-  return {
-    [`${componentName}.component.ts`]:
-        `import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
-
-@Component({
-  selector: "app-${componentName}",
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: "./${componentName}.component.html",
-  styleUrl: "./${componentName}.component.scss"
-})
-export class ${className} {}
-`,
-    [`${componentName}.component.html`]:
-        `<section class="${componentName}">
-  <h2>${componentName}</h2>
-  <p>Angular component scaffold.</p>
-</section>
-`,
-    [`${componentName}.component.scss`]:
-        `.${componentName} {
-  display: grid;
-  gap: 0.5rem;
-}
-`,
-    [`${componentName}.component.spec.ts`]:
-        `import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ${className} } from "./${componentName}.component";
-
-describe("${className}", () => {
-  let component: ${className};
-  let fixture: ComponentFixture<${className}>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [${className}]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(${className});
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it("creates", () => {
-    expect(component).toBeTruthy();
-  });
-});
-`
-  };
 }
 
 function createWebTemplates(framework, componentName) {
@@ -190,14 +136,6 @@ async function writeTemplates(componentDir, templates, force) {
 }
 
 function getSidebarFiles(framework, componentName) {
-  if (framework === "angular") {
-    return [
-      { lang: "html", file: `${componentName}.component.html` },
-      { lang: "javascript", file: `${componentName}.component.ts` },
-      { lang: "javascript", fileRole: "spec", file: `${componentName}.component.spec.ts` },
-      { lang: "scss", file: `${componentName}.component.scss` }
-    ];
-  }
   if (framework === "react") {
     return [
       { lang: "javascript", file: `${componentName}.jsx` },
@@ -268,9 +206,7 @@ async function main() {
     fail(`Failed to create directory ${componentDir}: ${error.message}`);
   }
 
-  const templates = framework === "angular"
-      ? createAngularTemplates(componentName)
-      : createWebTemplates(framework, componentName);
+  const templates = createWebTemplates(framework, componentName);
 
   await writeTemplates(componentDir, templates, args.force);
 

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kaylios Component Manager</title>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="shortcut icon" href="img/kaylios-systems-icon.svg" type="image/x-icon">
   </head>
   <body>
     <section class="window">
@@ -18,10 +19,6 @@
             <h2 class="framework-list__title">React</h2>
           </li>
           <li class="framework-list__item">
-            <h2 class="framework-list__title">Angular</h2>
-
-          </li>
-          <li class="framework-list__item">
             <h2 class="framework-list__title">Vue</h2>
           </li>
           <li class="framework-list__item">
@@ -31,7 +28,38 @@
       </aside>
 
       <main class="editor">
+        <div class="editor__toolbar">
+          <label class="editor__theme-control">
+            <span>Editor Theme</span>
+            <div class="theme-picker" id="editor-theme-picker">
+              <button type="button" id="editor-theme-button" class="theme-picker__button" aria-haspopup="listbox" aria-expanded="false">
+                <span id="editor-theme-label">Midnight</span>
+              </button>
+              <ul id="editor-theme-menu" class="theme-picker__menu" role="listbox" hidden>
+                <li><button type="button" class="theme-picker__option" data-theme-value="midnight" role="option">Midnight</button></li>
+                <li><button type="button" class="theme-picker__option" data-theme-value="light" role="option">Light</button></li>
+                <li><button type="button" class="theme-picker__option" data-theme-value="dracula" role="option">Dracula</button></li>
+                <li><button type="button" class="theme-picker__option" data-theme-value="nord" role="option">Nord</button></li>
+                <li><button type="button" class="theme-picker__option" data-theme-value="solarized-dark" role="option">Solarized Dark</button></li>
+                <li><button type="button" class="theme-picker__option" data-theme-value="solarized-light" role="option">Solarized Light</button></li>
+                <li><button type="button" class="theme-picker__option" data-theme-value="high-contrast" role="option">High Contrast</button></li>
+              </ul>
+            </div>
+          </label>
+        </div>
         <div id="editor" class="editor__canvas" aria-label="Code editor"></div>
+        <section id="editor-preview" class="editor-preview" aria-label="Component preview">
+          <header class="editor-preview__header">
+            <h2 class="editor-preview__title">Preview</h2>
+            <button type="button" id="preview-refresh" class="editor-preview__refresh">Refresh</button>
+          </header>
+          <iframe
+            id="component-preview-frame"
+            class="editor-preview__frame"
+            title="Component preview"
+            sandbox="allow-scripts"
+          ></iframe>
+        </section>
       </main>
 
       <aside class="right-sidebar"></aside>
@@ -48,7 +76,6 @@
             <span>Framework</span>
             <select id="add-component-framework" name="framework">
               <option value="react">React</option>
-              <option value="angular">Angular</option>
               <option value="vue">Vue</option>
               <option value="vanilla">Vanilla</option>
             </select>

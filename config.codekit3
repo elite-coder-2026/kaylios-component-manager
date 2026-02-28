@@ -9,10 +9,412 @@
   ],
   "creatorBuild" : "34903",
   "files" : {
+    "\/.gitignore" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.gitignore",
+      "oF" : 0
+    },
     "\/.idea" : {
       "ft" : 65536,
       "oA" : 1,
       "oAP" : "\/.idea",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/details.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/details.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/diff-details.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/diff-details.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/diff.csv" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/diff.csv",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/diff.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/diff.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/diff.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/diff.txt",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/results.csv" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/results.csv",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/results.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/results-min.json",
+      "oF" : 0,
+      "oO" : 1,
+      "oS" : 1
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/results.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/results.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_03-50-01\/results.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_03-50-01\/results.txt",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/details.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/details.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/diff-details.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/diff-details.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/diff.csv" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/diff.csv",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/diff.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/diff.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/diff.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/diff.txt",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/results.csv" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/results.csv",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/results.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/results-min.json",
+      "oF" : 0,
+      "oO" : 1,
+      "oS" : 1
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/results.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/results.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-11_07-44-07\/results.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-11_07-44-07\/results.txt",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/details.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/details.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/diff-details.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/diff-details.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/diff.csv" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/diff.csv",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/diff.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/diff.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/diff.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/diff.txt",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/results.csv" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/results.csv",
+      "oF" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/results.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/results-min.json",
+      "oF" : 0,
+      "oO" : 1,
+      "oS" : 1
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/results.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/results.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/.VSCodeCounter\/2026-02-17_20-55-40\/results.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.VSCodeCounter\/2026-02-17_20-55-40\/results.txt",
+      "oF" : 0
+    },
+    "\/AGENTS.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/AGENTS.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/architecture.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/architecture.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/cli\/kcm.mjs" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/cli\/kcm.mjs",
       "oF" : 0
     },
     "\/client\/css\/app-min.css" : {
@@ -46,6 +448,26 @@
       "oA" : 0,
       "oAP" : "\/client\/css\/app.css.map",
       "oF" : 0
+    },
+    "\/client\/img\/kaylios-systems-icon.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/client\/img\/kaylios-systems-icon.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/client\/img\/logo.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/client\/img\/logo.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
     },
     "\/client\/index.html" : {
       "cB" : 0,
@@ -88,6 +510,17 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/client\/js\/editor.es2017-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/client\/js\/editor.es2017-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/client\/js\/editor.es2017.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -126,7 +559,45 @@
       "oAP" : "\/client\/js\/editor.js.map",
       "oF" : 0
     },
-    "\/client\/scss\/app.css" : {
+    "\/client\/portfolio\/index.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/client\/portfolio\/index.html",
+      "oF" : 0
+    },
+    "\/client\/portfolio\/main.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/client\/portfolio\/main-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/client\/portfolio\/README.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/client\/portfolio\/README.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/client\/portfolio\/styles.css" : {
       "aP" : 1,
       "bl" : 0,
       "ci" : 0,
@@ -134,43 +605,31 @@
       "ft" : 16,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/client\/scss\/app-min.css",
+      "oAP" : "\/client\/portfolio\/styles-min.css",
       "oF" : 0,
       "pg" : 0
     },
-    "\/client\/scss\/app.scss" : {
-      "aP" : 0,
-      "bl" : 1,
+    "\/components\/angular\/confirm-dialog\/confirm-dialog.component.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
       "co" : 0,
-      "ec" : 1,
-      "ft" : 4,
+      "ft" : 16,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/client\/scss\/app.css",
+      "oAP" : "\/components\/angular\/confirm-dialog\/confirm-dialog.component-min.css",
       "oF" : 0,
-      "oS" : 0,
       "pg" : 0
     },
-    "\/components\/angular\/date-picker.html" : {
+    "\/components\/angular\/confirm-dialog\/confirm-dialog.component.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/date-picker.html",
+      "oAP" : "\/components\/angular\/confirm-dialog\/confirm-dialog.component.html",
       "oF" : 0
     },
-    "\/components\/angular\/date-picker.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 1,
-      "oA" : 0,
-      "oAP" : "\/components\/angular\/date-picker-min.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/components\/angular\/date-picker.scss" : {
+    "\/components\/angular\/confirm-dialog\/confirm-dialog.component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -178,31 +637,73 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/date-picker.css",
+      "oAP" : "\/components\/angular\/confirm-dialog\/confirm-dialog.component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/angular\/form-field.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/angular\/form-field.html",
-      "oF" : 0
-    },
-    "\/components\/angular\/form-field.js" : {
+    "\/components\/angular\/confirm-dialog\/confirm-dialog.component.spec.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/form-field-min.js",
+      "oAP" : "\/components\/angular\/confirm-dialog\/confirm-dialog.component.spec-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/angular\/form-field.scss" : {
+    "\/components\/angular\/confirm-dialog\/confirm-dialog.component.spec.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/confirm-dialog\/confirm-dialog.component.spec.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/confirm-dialog\/confirm-dialog.component.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 1,
+      "oAP" : "\/components\/angular\/confirm-dialog\/confirm-dialog.component.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/data-table\/data-table.component.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/data-table\/data-table.component-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/components\/angular\/data-table\/data-table.component.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/data-table\/data-table.component.html",
+      "oF" : 0
+    },
+    "\/components\/angular\/data-table\/data-table.component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -210,31 +711,73 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/form-field.css",
+      "oAP" : "\/components\/angular\/data-table\/data-table.component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/angular\/side-nav.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/angular\/side-nav.html",
-      "oF" : 0
-    },
-    "\/components\/angular\/side-nav.js" : {
+    "\/components\/angular\/data-table\/data-table.component.spec.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/side-nav-min.js",
+      "oAP" : "\/components\/angular\/data-table\/data-table.component.spec-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/angular\/side-nav.scss" : {
+    "\/components\/angular\/data-table\/data-table.component.spec.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/data-table\/data-table.component.spec.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/data-table\/data-table.component.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 1,
+      "oAP" : "\/components\/angular\/data-table\/data-table.component.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/file-uploader\/file-uploader.component.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/file-uploader\/file-uploader.component-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/components\/angular\/file-uploader\/file-uploader.component.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/file-uploader\/file-uploader.component.html",
+      "oF" : 0
+    },
+    "\/components\/angular\/file-uploader\/file-uploader.component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -242,31 +785,73 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/side-nav.css",
+      "oAP" : "\/components\/angular\/file-uploader\/file-uploader.component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/angular\/snack-bar.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/angular\/snack-bar.html",
-      "oF" : 0
-    },
-    "\/components\/angular\/snack-bar.js" : {
+    "\/components\/angular\/file-uploader\/file-uploader.component.spec.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/snack-bar-min.js",
+      "oAP" : "\/components\/angular\/file-uploader\/file-uploader.component.spec-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/angular\/snack-bar.scss" : {
+    "\/components\/angular\/file-uploader\/file-uploader.component.spec.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/file-uploader\/file-uploader.component.spec.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/file-uploader\/file-uploader.component.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 1,
+      "oAP" : "\/components\/angular\/file-uploader\/file-uploader.component.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/pagination-controls\/pagination-controls.component.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/pagination-controls\/pagination-controls.component-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/components\/angular\/pagination-controls\/pagination-controls.component.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/pagination-controls\/pagination-controls.component.html",
+      "oF" : 0
+    },
+    "\/components\/angular\/pagination-controls\/pagination-controls.component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -274,31 +859,61 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/snack-bar.css",
+      "oAP" : "\/components\/angular\/pagination-controls\/pagination-controls.component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/angular\/stepper.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/angular\/stepper.html",
-      "oF" : 0
-    },
-    "\/components\/angular\/stepper.js" : {
+    "\/components\/angular\/pagination-controls\/pagination-controls.component.spec.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/stepper-min.js",
+      "oAP" : "\/components\/angular\/pagination-controls\/pagination-controls.component.spec-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/angular\/stepper.scss" : {
+    "\/components\/angular\/pagination-controls\/pagination-controls.component.spec.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/pagination-controls\/pagination-controls.component.spec.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/pagination-controls\/pagination-controls.component.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 1,
+      "oAP" : "\/components\/angular\/pagination-controls\/pagination-controls.component.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/test.component.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/test.component.html",
+      "oF" : 0
+    },
+    "\/components\/angular\/test.component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -306,31 +921,62 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/angular\/stepper.css",
+      "oAP" : "\/components\/angular\/test.component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/react\/button.html" : {
+    "\/components\/angular\/test.component.spec.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/test.component.spec.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/test.component.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 1,
+      "oAP" : "\/components\/angular\/test.component.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/toast-notification\/toast-notification.component.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/toast-notification\/toast-notification.component-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/components\/angular\/toast-notification\/toast-notification.component.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/react\/button.html",
+      "oAP" : "\/components\/angular\/toast-notification\/toast-notification.component.html",
       "oF" : 0
     },
-    "\/components\/react\/button.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 1,
-      "oA" : 0,
-      "oAP" : "\/components\/react\/button-min.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/components\/react\/button.scss" : {
+    "\/components\/angular\/toast-notification\/toast-notification.component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -338,31 +984,76 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/react\/button.css",
+      "oAP" : "\/components\/angular\/toast-notification\/toast-notification.component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/react\/data-table.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/react\/data-table.html",
-      "oF" : 0
-    },
-    "\/components\/react\/data-table.js" : {
+    "\/components\/angular\/toast-notification\/toast-notification.component.spec.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/react\/data-table-min.js",
+      "oAP" : "\/components\/angular\/toast-notification\/toast-notification.component.spec-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/react\/data-table.scss" : {
+    "\/components\/angular\/toast-notification\/toast-notification.component.spec.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 0,
+      "oAP" : "\/components\/angular\/toast-notification\/toast-notification.component.spec.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/angular\/toast-notification\/toast-notification.component.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 1,
+      "oAP" : "\/components\/angular\/toast-notification\/toast-notification.component.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/components\/react\/data-table\/data-table.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/react\/data-table\/data-table-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/components\/react\/data-table\/data-table.jsx" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/components\/react\/data-table\/data-table-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/components\/react\/data-table\/data-table.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -370,31 +1061,35 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/react\/data-table.css",
+      "oAP" : "\/components\/react\/data-table\/data-table.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/react\/modal.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
+    "\/components\/react\/file-uploader\/file-uploader.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/react\/modal.html",
-      "oF" : 0
+      "oAP" : "\/components\/react\/file-uploader\/file-uploader-min.css",
+      "oF" : 0,
+      "pg" : 0
     },
-    "\/components\/react\/modal.js" : {
+    "\/components\/react\/file-uploader\/file-uploader.jsx" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/react\/modal-min.js",
+      "oAP" : "\/components\/react\/file-uploader\/file-uploader-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/react\/modal.scss" : {
+    "\/components\/react\/file-uploader\/file-uploader.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -402,31 +1097,35 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/react\/modal.css",
+      "oAP" : "\/components\/react\/file-uploader\/file-uploader.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/react\/tabs.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
+    "\/components\/react\/modal-dialog\/modal-dialog.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/react\/tabs.html",
-      "oF" : 0
+      "oAP" : "\/components\/react\/modal-dialog\/modal-dialog-min.css",
+      "oF" : 0,
+      "pg" : 0
     },
-    "\/components\/react\/tabs.js" : {
+    "\/components\/react\/modal-dialog\/modal-dialog.jsx" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/react\/tabs-min.js",
+      "oAP" : "\/components\/react\/modal-dialog\/modal-dialog-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/react\/tabs.scss" : {
+    "\/components\/react\/modal-dialog\/modal-dialog.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -434,31 +1133,23 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/react\/tabs.css",
+      "oAP" : "\/components\/react\/modal-dialog\/modal-dialog.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/react\/toast.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/react\/toast.html",
-      "oF" : 0
-    },
-    "\/components\/react\/toast.js" : {
+    "\/components\/react\/my-component\/my-component.jsx" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/react\/toast-min.js",
+      "oAP" : "\/components\/react\/my-component\/my-component-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/react\/toast.scss" : {
+    "\/components\/react\/my-component\/my-component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -466,31 +1157,35 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/react\/toast.css",
+      "oAP" : "\/components\/react\/my-component\/my-component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vanilla\/alert.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
+    "\/components\/react\/pagination-controls\/pagination-controls.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/alert.html",
-      "oF" : 0
+      "oAP" : "\/components\/react\/pagination-controls\/pagination-controls-min.css",
+      "oF" : 0,
+      "pg" : 0
     },
-    "\/components\/vanilla\/alert.js" : {
+    "\/components\/react\/pagination-controls\/pagination-controls.jsx" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/alert-min.js",
+      "oAP" : "\/components\/react\/pagination-controls\/pagination-controls-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/vanilla\/alert.scss" : {
+    "\/components\/react\/pagination-controls\/pagination-controls.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -498,31 +1193,23 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/alert.css",
+      "oAP" : "\/components\/react\/pagination-controls\/pagination-controls.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vanilla\/card.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/vanilla\/card.html",
-      "oF" : 0
-    },
-    "\/components\/vanilla\/card.js" : {
+    "\/components\/react\/searchable-tag-picker\/searchable-tag-picker.jsx" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/card-min.js",
+      "oAP" : "\/components\/react\/searchable-tag-picker\/searchable-tag-picker-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/vanilla\/card.scss" : {
+    "\/components\/react\/searchable-tag-picker\/searchable-tag-picker.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -530,31 +1217,23 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/card.css",
+      "oAP" : "\/components\/react\/searchable-tag-picker\/searchable-tag-picker.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vanilla\/grid.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/vanilla\/grid.html",
-      "oF" : 0
-    },
-    "\/components\/vanilla\/grid.js" : {
+    "\/components\/react\/test-component\/test-component.jsx" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/grid-min.js",
+      "oAP" : "\/components\/react\/test-component\/test-component-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/vanilla\/grid.scss" : {
+    "\/components\/react\/test-component\/test-component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -562,31 +1241,31 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/grid.css",
+      "oAP" : "\/components\/react\/test-component\/test-component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vanilla\/modal.html" : {
+    "\/components\/react\/test.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/modal.html",
+      "oAP" : "\/components\/react\/test.html",
       "oF" : 0
     },
-    "\/components\/vanilla\/modal.js" : {
+    "\/components\/react\/test.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/modal-min.js",
+      "oAP" : "\/components\/react\/test-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/vanilla\/modal.scss" : {
+    "\/components\/react\/test.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -594,31 +1273,35 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/modal.css",
+      "oAP" : "\/components\/react\/test.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vanilla\/navbar.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
+    "\/components\/react\/toast-notification\/toast-notification.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/navbar.html",
-      "oF" : 0
+      "oAP" : "\/components\/react\/toast-notification\/toast-notification-min.css",
+      "oF" : 0,
+      "pg" : 0
     },
-    "\/components\/vanilla\/navbar.js" : {
+    "\/components\/react\/toast-notification\/toast-notification.jsx" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/navbar-min.js",
+      "oAP" : "\/components\/react\/toast-notification\/toast-notification-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/vanilla\/navbar.scss" : {
+    "\/components\/react\/toast-notification\/toast-notification.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -626,31 +1309,31 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vanilla\/navbar.css",
+      "oAP" : "\/components\/react\/toast-notification\/toast-notification.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vue\/accordion.html" : {
+    "\/components\/vanilla\/another-simple-test.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/accordion.html",
+      "oAP" : "\/components\/vanilla\/another-simple-test.html",
       "oF" : 0
     },
-    "\/components\/vue\/accordion.js" : {
+    "\/components\/vanilla\/another-simple-test.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/accordion-min.js",
+      "oAP" : "\/components\/vanilla\/another-simple-test-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/vue\/accordion.scss" : {
+    "\/components\/vanilla\/another-simple-test.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -658,31 +1341,31 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/accordion.css",
+      "oAP" : "\/components\/vanilla\/another-simple-test.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vue\/breadcrumbs.html" : {
+    "\/components\/vanilla\/simple-component.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/breadcrumbs.html",
+      "oAP" : "\/components\/vanilla\/simple-component.html",
       "oF" : 0
     },
-    "\/components\/vue\/breadcrumbs.js" : {
+    "\/components\/vanilla\/simple-component.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/breadcrumbs-min.js",
+      "oAP" : "\/components\/vanilla\/simple-component-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/vue\/breadcrumbs.scss" : {
+    "\/components\/vanilla\/simple-component.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -690,31 +1373,54 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/breadcrumbs.css",
+      "oAP" : "\/components\/vanilla\/simple-component.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vue\/dropdown.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/vue\/dropdown.html",
-      "oF" : 0
-    },
-    "\/components\/vue\/dropdown.js" : {
+    "\/components\/vanilla\/user-table\/user-table-min.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 1,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/dropdown-min.js",
+      "oAP" : "\/components\/vanilla\/user-table\/user-table-min-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
-    "\/components\/vue\/dropdown.scss" : {
+    "\/components\/vanilla\/user-table\/user-table.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/vanilla\/user-table\/user-table-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/components\/vanilla\/user-table\/user-table.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/components\/vanilla\/user-table\/user-table.html",
+      "oF" : 0
+    },
+    "\/components\/vanilla\/user-table\/user-table.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/components\/vanilla\/user-table\/user-table-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/components\/vanilla\/user-table\/user-table.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -722,74 +1428,37 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/dropdown.css",
+      "oAP" : "\/components\/vanilla\/user-table\/user-table.css",
       "oF" : 0,
       "oS" : 0,
       "pg" : 0
     },
-    "\/components\/vue\/pagination.html" : {
+    "\/db-test.cpp" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/pagination.html",
+      "oAP" : "\/db-test.cpp",
       "oF" : 0
     },
-    "\/components\/vue\/pagination.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 1,
-      "oA" : 0,
-      "oAP" : "\/components\/vue\/pagination-min.js",
-      "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/components\/vue\/pagination.scss" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "ec" : 1,
-      "ft" : 4,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/vue\/pagination.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0
-    },
-    "\/components\/vue\/tooltip.html" : {
+    "\/my-fucking-mistakes.md" : {
       "cB" : 0,
-      "ft" : 8192,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/components\/vue\/tooltip.html",
-      "oF" : 0
-    },
-    "\/components\/vue\/tooltip.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 1,
-      "oA" : 0,
-      "oAP" : "\/components\/vue\/tooltip-min.js",
+      "oAP" : "\/my-fucking-mistakes.html",
       "oF" : 0,
-      "sC" : 3,
-      "tS" : 0
-    },
-    "\/components\/vue\/tooltip.scss" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "ec" : 1,
-      "ft" : 4,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/components\/vue\/tooltip.css",
-      "oF" : 0,
+      "oFM" : 0,
       "oS" : 0,
-      "pg" : 0
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
     },
     "\/node_modules" : {
       "ft" : 65536,
@@ -812,6 +1481,417 @@
       "oF" : 0,
       "oO" : 1,
       "oS" : 1
+    },
+    "\/pro-prompts.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/pro-prompts.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/README.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/README.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/report.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/report.html",
+      "oF" : 0
+    },
+    "\/report.MD" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/report.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/rules.md" : {
+      "cB" : 0,
+      "cS" : 0,
+      "eF" : 1,
+      "eL" : 1,
+      "ema" : 1,
+      "eSQ" : 1,
+      "ft" : 4096,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/rules.html",
+      "oF" : 0,
+      "oFM" : 0,
+      "oS" : 0,
+      "pHT" : 0,
+      "pME" : 1,
+      "rFN" : 0,
+      "uCM" : 0
+    },
+    "\/scripts\/add-component.mjs" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/scripts\/add-component.mjs",
+      "oF" : 0
+    },
+    "\/scripts\/check-no-cpp-arrow.mjs" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/scripts\/check-no-cpp-arrow.mjs",
+      "oF" : 0
+    },
+    "\/scripts\/codemod-cpp-arrow-to-dot.mjs" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/scripts\/codemod-cpp-arrow-to-dot.mjs",
+      "oF" : 0
+    },
+    "\/scripts\/count-markdown-words.py" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/scripts\/count-markdown-words.py",
+      "oF" : 0
+    },
+    "\/scripts\/react\/test.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/scripts\/react\/test-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/.env" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/server\/.env",
+      "oF" : 0
+    },
+    "\/server\/node_modules" : {
+      "ft" : 65536,
+      "oA" : 2,
+      "oAP" : "\/server\/node_modules",
+      "oF" : 0
+    },
+    "\/server\/package-lock.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/server\/package-lock-min.json",
+      "oF" : 0,
+      "oO" : 1,
+      "oS" : 1
+    },
+    "\/server\/package.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/server\/package-min.json",
+      "oF" : 0,
+      "oO" : 1,
+      "oS" : 1
+    },
+    "\/server\/src\/app.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/app-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/comp-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/comp-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/comp.jsx" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/comp-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/config\/load-env.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/config\/load-env-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/controllers\/components.controller.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/controllers\/components.controller-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/db\/client.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/db\/client-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/middleware\/auth.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/middleware\/auth-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/middleware\/error-handler.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/middleware\/error-handler-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/routes\/components.routes-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/routes\/components.routes-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/routes\/components.routes.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/routes\/components.routes-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/routes\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/routes\/index-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/server.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/server-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/services\/components.service-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/services\/components.service-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/services\/components.service.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/services\/components.service-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/src\/test.ts" : {
+      "cDF" : 0,
+      "ft" : 128,
+      "jxM" : 0,
+      "ma" : 0,
+      "mDT" : 0,
+      "mi" : 0,
+      "moR" : 0,
+      "moT" : 2,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/test.js",
+      "oF" : 0,
+      "rC" : 0,
+      "tEC" : 2018
+    },
+    "\/server\/src\/validation\/comp.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/validation\/comp-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/server\/src\/validation\/comp.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/validation\/comp.css",
+      "oF" : 0,
+      "oS" : 0,
+      "pg" : 0
+    },
+    "\/server\/src\/validation\/components.validation.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/src\/validation\/components.validation-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/test\/components.api.test-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/test\/components.api.test-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/test\/components.api.test.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/server\/test\/components.api.test-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/server\/tmp_restore_components.sql" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/server\/tmp_restore_components.sql",
+      "oF" : 0
+    },
+    "\/test-file.cpp" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/test-file.cpp",
+      "oF" : 0
+    },
+    "\/test.jsx" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/test-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
     }
   },
   "hooks" : [

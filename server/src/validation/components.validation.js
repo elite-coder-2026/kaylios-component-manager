@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const frameworks = ["react", "angular", "vue", "vanilla"];
+const frameworks = ["react", "vue", "vanilla"];
 
 const createComponentSchema = Joi.object({
   framework: Joi.string()

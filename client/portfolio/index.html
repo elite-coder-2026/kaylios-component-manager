@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Portfolio</title>
+    <meta name="description" content="A clean, responsive portfolio template.">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+      :root {
+        --color-first: #95A0BF;
+        --color-second: #8F96A6;
+        --color-third: #AAB5BF;
+        --color-fourth: #F2F0D9;
+        --color-fifth: #F3EDDD;
+
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text" id="brandName">Your Name</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#skills">Skills</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme">
+            <span class="icon-sun" aria-hidden="true"></span>
+            <span class="icon-moon" aria-hidden="true"></span>
+          </button>
+          <a class="button button-primary" id="ctaLink" href="#contact">Let’s talk</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow" id="eyebrow">Available for freelance</p>
+            <h1 class="hero-title">
+              <span class="muted">Hi, I’m</span>
+              <span id="heroName">Your Name</span>.
+              <span class="muted">I build</span>
+              <span id="heroRole">modern web experiences</span>.
+            </h1>
+            <p class="hero-subtitle" id="heroBio">
+              I’m a developer focused on clean UI, strong accessibility, and reliable performance.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" id="primaryAction" href="#projects">See my work</a>
+              <a class="button button-ghost" id="secondaryAction" href="#contact">Contact</a>
+            </div>
+
+            <div class="hero-meta">
+              <div class="meta-item">
+                <span class="meta-label">Location</span>
+                <span class="meta-value" id="location">United States</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Email</span>
+                <a class="meta-value link" id="emailLink" href="mailto:you@example.com">you@example.com</a>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Links</span>
+                <span class="meta-value meta-links">
+                  <a class="link" id="githubLink" href="#" rel="noreferrer">GitHub</a>
+                  <a class="link" id="linkedinLink" href="#" rel="noreferrer">LinkedIn</a>
+                  <a class="link" id="resumeLink" href="#" rel="noreferrer">Resume</a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card" aria-label="Highlights">
+            <div class="card">
+              <p class="card-kicker">Highlights</p>
+              <ul class="highlights" id="highlights">
+                <li>Design systems and component libraries</li>
+                <li>Front-end performance and a11y</li>
+                <li>Node/Express APIs when needed</li>
+              </ul>
+              <div class="card-divider"></div>
+              <p class="card-kicker">Focus</p>
+              <div class="pill-row" id="focusPills">
+                <span class="pill">UI Engineering</span>
+                <span class="pill">Accessibility</span>
+                <span class="pill">Tooling</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <header class="section-header">
+            <h2>Projects</h2>
+            <p class="section-subtitle">A few things I’ve built recently.</p>
+          </header>
+
+          <div class="grid" id="projectsGrid" aria-label="Project list"></div>
+        </div>
+      </section>
+
+      <section id="about" class="section section-alt">
+        <div class="container about-grid">
+          <div>
+            <header class="section-header">
+              <h2>About</h2>
+              <p class="section-subtitle">A short story and how I work.</p>
+            </header>
+            <div class="prose" id="aboutProse">
+              <p>
+
+                <p>"Frontend engineer with a focus on turning early-stage ideas into polished, production-ready interfaces. I care about the details — semantic HTML, cohesive design systems, and meaningful UI states. I work across the stack, but my strengths lie in UI/UX refinement and building tools that help teams move faster."</p>
+
+            </div>
+          </div>
+
+          <div class="card">
+            <p class="card-kicker">Now</p>
+            <ul class="timeline" id="timeline">
+              <li>
+                <span class="timeline-title">Building</span>
+                <span class="timeline-body">A component-driven UI workflow</span>
+              </li>
+              <li>
+                <span class="timeline-title">Learning</span>
+                <span class="timeline-body">Better DX with modern tooling</span>
+              </li>
+              <li>
+                <span class="timeline-title">Open to</span>
+                <span class="timeline-body">Freelance & full-time opportunities</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="container">
+          <header class="section-header">
+            <h2>Skills</h2>
+            <p class="section-subtitle">Tools I use to build, ship, and maintain.</p>
+          </header>
+
+          <div class="skills" id="skillsGrid" aria-label="Skills list"></div>
+        </div>
+      </section>
+
+      <section id="contact" class="section section-alt">
+        <div class="container contact-grid">
+          <div>
+            <header class="section-header">
+              <h2>Contact</h2>
+              <p class="section-subtitle">Want to work together? Send a note.</p>
+            </header>
+
+            <div class="prose">
+              <p>
+                The quickest way to reach me is email. If you include a short brief (timeline, budget, and what success
+                looks like), I can respond faster.
+              </p>
+            </div>
+
+            <div class="contact-actions">
+              <a class="button button-primary" id="emailButton" href="mailto:you@example.com">Email me</a>
+              <button class="button button-ghost" id="copyEmail" type="button">Copy email</button>
+            </div>
+
+            <p class="small muted" id="copyStatus" role="status" aria-live="polite"></p>
+          </div>
+
+          <form class="card form" id="contactForm" aria-label="Contact form">
+            <p class="card-kicker">Message</p>
+            <label class="field">
+              <span>Name</span>
+              <input name="name" autocomplete="name" placeholder="Your name" required>
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input name="email" autocomplete="email" type="email" placeholder="you@example.com" required>
+            </label>
+            <label class="field">
+              <span>What are you building?</span>
+              <textarea name="message" rows="5" placeholder="A short description…" required></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Create email</button>
+            <p class="small muted">This form opens your email client; nothing is stored.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="small muted">© <span id="year"></span> <span id="footerName">Your Name</span>. Built with plain HTML/CSS/JS.</p>
+        <a class="small link" href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <script id="portfolioData" type="application/json">
+      {
+        "name": "Your Name",
+        "role": "modern web experiences",
+        "bio": "I’m a developer focused on clean UI, strong accessibility, and reliable performance.",
+        "location": "United States",
+        "email": "you@example.com",
+        "links": {
+          "github": "https://github.com/",
+          "linkedin": "https://www.linkedin.com/",
+          "resume": "#"
+        },
+        "highlights": [
+          "Design systems and component libraries",
+          "Front-end performance and a11y",
+          "Node/Express APIs when needed"
+        ],
+        "focus": ["UI Engineering", "Accessibility", "Tooling"],
+        "projects": [
+          {
+            "title": "Component Manager",
+            "description": "A local tool to manage reusable UI components with preview and versioning.",
+            "tags": ["JavaScript", "CSS", "Tooling"],
+            "image": "",
+            "imageAlt": "",
+            "href": "#",
+            "cta": "View project"
+          },
+          {
+            "title": "Design System Starter",
+            "description": "Token-driven styles, accessible components, and documentation patterns.",
+            "tags": ["Design Systems", "A11y", "Docs"],
+            "image": "",
+            "imageAlt": "",
+            "href": "#",
+            "cta": "See details"
+          },
+          {
+            "title": "API + Dashboard",
+            "description": "A lightweight API with a clean UI for managing data and workflows.",
+            "tags": ["Node", "Express", "UI", "automation", "AI"],
+            "image": "",
+            "imageAlt": "",
+            "href": "#",
+            "cta": "Open"
+          }
+        ],
+        "skills": [
+          { "group": "Frontend", "items": ["HTML", "CSS", "JavaScript", "Accessibility", "Performance"] },
+          { "group": "Frameworks", "items": ["React", "Vue"] },
+          { "group": "Backend", "items": ["Node.js", "Express", "PostgreSQL"] },
+          { "group": "Workflow", "items": ["Git", "Testing", "CI", "Design systems", "AI", "Automation"] }
+        ]
+      }
+    </script>
+    <script src="./main.js" defer></script>
+  </body>
+</html>

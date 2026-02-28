@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="kaylioscomponentmanager—fullsummary">Kaylios Component Manager — Full Summary</h1>
+
+<h2 id="purpose">Purpose</h2>
+
+<p>Kaylios Component Manager is a local component scaffolding workspace that lets you create, list, view, and delete UI
+component templates across React, Angular, Vue, and vanilla. It includes a REST API, a browser UI, and CLI tools to generate component files in <code>components/&lt;framework&gt;/</code>.</p>
+
+<h2 id="corebehavior">Core Behavior</h2>
+
+<ul>
+<li>Creates component scaffolds with framework-specific templates and metadata (version, author, number).</li>
+<li>Stores component metadata and file contents in Postgres and writes files to disk.</li>
+<li>Lists components by framework; supports search with counts and line totals.</li>
+<li>Retrieves file lists, file content, and line counts per component and project.</li>
+<li>Deletes components from DB and disk.</li>
+</ul>
+
+<h2 id="serverapi">Server / API</h2>
+
+<ul>
+<li>Express API at <code>/api</code> with endpoints:</li>
+<li> <code>POST /api/components</code> create</li>
+<li> <code>GET /api/components</code> list by framework</li>
+<li> <code>GET /api/components/search</code> search with query/framework/limit</li>
+<li> <code>GET /api/components/:framework/:component</code> list files</li>
+<li> <code>GET /api/components/:framework/:component/content</code> get file contents</li>
+<li> <code>GET /api/components/:framework/:component/line-count</code> per-component line counts</li>
+<li> <code>GET /api/components/line-count-total</code> project totals</li>
+<li> <code>DELETE /api/components/:framework/:component</code> delete</li>
+<li>Joi validation enforces valid frameworks and kebab-case component names.</li>
+<li>Requires <code>DATABASE_URL</code> (optional <code>DATABASE_SSL</code>) and uses Postgres via <code>pg</code>.</li>
+<li>Loads <code>.env</code> from <code>server/.env</code> if present; error responses return JSON.</li>
+</ul>
+
+<h2 id="browserui">Browser UI</h2>
+
+<ul>
+<li>Static <code>client/index.html</code> with a component tree and CodeMirror editor.</li>
+<li>Pulls list/totals from API; loads component files from <code>components/</code> (supports nested + legacy paths).</li>
+<li>Modal to create components via API; right sidebar shows metadata and line counts.</li>
+<li>Multiple editor themes; theme stored in localStorage.</li>
+<li>Optional bearer token via <code>window.KCM_API_TOKEN</code> or localStorage keys.</li>
+</ul>
+
+<h2 id="cli">CLI</h2>
+
+<ul>
+<li><code>scripts/add-component.mjs</code>: writes scaffold files directly to <code>components/</code>, supports <code>--force</code>.</li>
+<li><code>cli/kcm.mjs</code>: API-backed CLI with commands for create/list/delete and an interactive mode.</li>
+</ul>
+
+<h2 id="buildtests">Build &amp; Tests</h2>
+
+<ul>
+<li><code>npm run build</code> bundles/transpiles the editor source into <code>client/js/editor.js</code>.</li>
+<li>Server tests are Jest + Supertest; current coverage focuses on health and validation.</li>
+</ul>
+
+<h2 id="whylocishigh">Why LOC Is High</h2>
+
+<ul>
+<li>Minified bundles and source maps in <code>client/js</code> and <code>client/css</code> inflate line counts.</li>
+<li>Most “actual logic” lives in <code>server/src/services/components.service.js</code> and <code>client/js/editor-src.js</code>.</li>
+</ul>
+
+</body>
+</html>
+

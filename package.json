@@ -7,6 +7,8 @@
     "component:add": "node scripts/add-component.mjs",
     "cli": "node cli/kcm.mjs",
     "cli:interactive": "node cli/kcm.mjs interactive",
+    "codemod:arrow": "node scripts/codemod-cpp-arrow-to-dot.mjs --root .",
+    "check:no-arrow": "node scripts/check-no-cpp-arrow.mjs --root .",
     "build:bundle": "esbuild client/js/editor-src.js --bundle --minify --sourcemap --platform=browser --format=iife --charset=ascii --target=es2017 --outfile=client/js/editor.es2017.js",
     "build:transpile": "babel client/js/editor.es2017.js --out-file client/js/editor.js --source-maps",
     "build": "npm run build:bundle && npm run build:transpile"

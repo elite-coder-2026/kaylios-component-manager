@@ -247,7 +247,7 @@ async function searchComponents({ q, framework, limit }) {
      LEFT JOIN component_files f ON f.component_id = c.id
      WHERE ${filters.join(' AND ')}
      GROUP BY c.id
-     ORDER BY c.framework, c.component
+--      ORDER BY c.framework, c.component
      LIMIT $${limitParamIndex}`,
     params
   );

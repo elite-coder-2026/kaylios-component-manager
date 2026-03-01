@@ -40,12 +40,12 @@ async function withTransaction(handler) {
   await ensureDatabase();
   const client = await getPool().connect();
   try {
-    await client.query("BEGIN");
+    await query("BEGIN");
     const result = await handler(client);
-    await client.query("COMMIT");
+    await query("COMMIT");
     return result;
   } catch (error) {
-    await client.query("ROLLBACK");
+    await query("ROLLBACK");
     throw error;
   } finally {
     client.release();
